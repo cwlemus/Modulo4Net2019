@@ -1,0 +1,45 @@
+﻿@using AppFacturacionMVC.Models
+@model List<MenuCl>
+
+<div class="container pen">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        @foreach (var mn in Model)
+                        {
+                            <span class="icon-bar"></span>
+                        }
+                    </button>
+                    @Html.ActionLink("XFACTU-500", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        @foreach (var men in Model)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    @men.Nombre
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @foreach (var item in @men.MenuItems)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action(item.Accion, item.Controlador)">
+                                                <i class="fade fa-circle-o">
+                                                </i>@item.Nombre
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
